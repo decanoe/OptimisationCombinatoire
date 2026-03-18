@@ -1,7 +1,7 @@
 #pragma once
 
 #include "adjmat.hpp"
-#include "../graph.hpp"
+#include "graph.hpp"
 #include <memory>
 
 enum class AdjMatType { 

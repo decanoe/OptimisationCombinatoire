@@ -6,7 +6,7 @@
 
 //#include <cmath>
 #include "graph.hpp"
-#include "path.hpp"
+#include "../path.hpp"
 //#include <sstream>
 
 //#include "InstanceGraph.hpp"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../graphDefs.hpp"
+#include "graphDefs.hpp"
 #include <vector>
 
 using namespace std;
