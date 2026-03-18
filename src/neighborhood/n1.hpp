@@ -7,6 +7,6 @@ namespace neighborhood {
     {
     private:
     public:
-        bool step(const Graph& g, vector<vertex>& sub, criteria::Criteria* criteria) const;
+        bool get_step(const Graph& g, const vector<vertex>& sub, vector<vertex>& candidates, criteria::Criteria* criteria, vector<vertex>& to_add, vector<vertex>& to_remove) const;
     };
 }

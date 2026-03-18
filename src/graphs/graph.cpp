@@ -40,10 +40,12 @@ void Graph::intersect_neighbors(vector<vertex> &vect, vertex v1) const
     gint size_inter(0);
 
     for (auto v:vect){
-        if (is_edge(v,v1)) vect[size_inter]=v;
-        size_inter ++;
+        if (is_edge(v,v1)) {
+            vect[size_inter]=v;
+            size_inter ++;
+        }
     }
-    vect.resize(size_inter+1);
+    vect.resize(size_inter);
 }
 
 // efficace quand on a une matrice d'adjacence

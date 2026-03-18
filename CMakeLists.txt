@@ -15,6 +15,7 @@ add_executable(OptCombi
 
     src/criteria/degree.cpp
 
+    src/neighborhood/neighborhood.cpp
     src/neighborhood/n1.cpp
 
     src/hill_climb/hill_climb.cpp

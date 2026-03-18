@@ -4,7 +4,26 @@
 using namespace neighborhood;
 using namespace criteria;
 
-bool N1::step(const Graph &g, vector<vertex> & sub, Criteria* criteria) const {
+bool N1::get_step(const Graph &g, const vector<vertex> & sub, vector<vertex>& candidates, Criteria* criteria, vector<vertex>& to_add, vector<vertex>& to_remove) const {
+    to_add.clear();
+    to_remove.clear();
+    if (candidates.size() == 0) return false; // local maxima reached
+
+    vertex best = -1;
+    double score = 0;
+    for (vertex v : candidates)
+    {
+        double new_score = criteria->evaluate(g, sub, vector<vertex>(1, v), std::vector<vertex>());
+        if (best == -1 || new_score > score) {
+            score = new_score;
+            best = v;
+        }
+    }
+
+    to_add.push_back(best);
+    return true; // HC can continue
+}
+/*bool N1::step(const Graph &g, vector<vertex> & sub, Criteria* criteria) const {
     vertex to_add = -1;
     double score = 0;
 
@@ -33,4 +52,4 @@ bool N1::step(const Graph &g, vector<vertex> & sub, Criteria* criteria) const {
     if (to_add == -1) return false; // local maxima reached
     utils::insert_vertex(sub, to_add);
     return true; // HC can continue
-}
+}*/

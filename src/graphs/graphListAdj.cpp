@@ -125,6 +125,7 @@ void GraphAdjVectorSorted::intersect_neighbors(vector<vertex> &vect, vertex v1) 
 {
     std::vector<vertex> neigh_v1 (neighbors(v1));
     std::vector<vertex> result = vect;
+    vect.clear();
     std::set_intersection(result.begin(), result.end(), neigh_v1.begin(), neigh_v1.end(),
                           std::back_inserter(vect));
     //vect = std::move(result);
