@@ -197,6 +197,22 @@ void utils::connected_components(const Graph &graph,  const vector<vertex> & sub
     }
 //    return sol;
 }
+void utils::connected_components(const Graph &graph,  const vector<bool> & subset_vertices,  vector<vector<vertex>> & sol) {
+    sol.clear();
+    vector<bool> visited(graph.nb_vertices(),false);
+    vector<vertex> vector_visited ;
+    vector_visited.reserve(graph.nb_vertices()) ;
+
+    for (auto start : subset_vertices){
+        if (!visited[start]){
+            breadth_first_search(graph, start, subset_vertices, vector_visited);
+            sol.push_back(vector_visited);
+            for (auto v : vector_visited) visited[v]=true;
+            vector_visited.clear();
+        }
+    }
+//    return sol;
+}
 
 
 void utils::insert_vertex(vector<vertex> & sub, vertex vertex) {

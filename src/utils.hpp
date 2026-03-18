@@ -43,7 +43,7 @@ void breadth_first_search(const Graph &graph, const vertex start,  vector<vertex
 
 
 void connected_components(const Graph &graph, vector<vector<vertex>> & sol);
-
+void connected_components(const Graph &graph,  const vector<bool> & subset_vertices,  vector<vector<vertex>> & sol);
 void connected_components(const Graph &graph,const vector<vertex> & sub, vector<vector<vertex>> & sol);
 
 
