@@ -12,5 +12,11 @@ add_executable(OptCombi
     src/graphs/graphAdjMatrix.cpp
     src/graphs/graphListAdj.cpp
     src/graphs/weightedgraphDefs.cpp
+
+    src/criteria/degree.cpp
+
+    src/neighborhood/n1.cpp
+
+    src/hill_climb/hill_climb.cpp
 )
 target_compile_features(OptCombi PRIVATE cxx_std_17)
