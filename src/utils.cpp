@@ -3,22 +3,19 @@
 #include <queue>
 
 
-
-
-
 // Returns the number of vertices in the graph.
-gint nb_edges(const Graph &g) {
+gint utils::nb_edges(const Graph &g) {
     return g.nb_edges();
 }
 
 // Returns the density of the graph.
-double density(const Graph &g) {
+double utils::density(const Graph &g) {
     return static_cast<double>(2.0 * g.nb_edges()) /
            (static_cast<double>(g.nb_vertices() * (g.nb_vertices() - 1)));
 }
 
 // Returns the maximum degree of the graph.
-gint max_degree(const Graph &g) {
+gint utils::max_degree(const Graph &g) {
     gint max_degree = 0;
     for (vertex v = 0; v < g.nb_vertices(); ++v) {
         if (max_degree < g.degree(v)) max_degree =  g.degree(v);
@@ -27,7 +24,7 @@ gint max_degree(const Graph &g) {
 }
 
 
-gint residual_degree(const Graph &g,const vector<vertex> & sub, vertex v){
+gint utils::residual_degree(const Graph &g,const vector<vertex> & sub, vertex v){
     vector<vertex>  sub2(sub);
     g.intersect_neighbors(sub2, v);
     return sub2.size();
@@ -35,7 +32,7 @@ gint residual_degree(const Graph &g,const vector<vertex> & sub, vertex v){
 
 
 // Returns a pair of the max degree vertex and its residual degree.
-std::pair<vertex, gint> max_residual_degree_vertex(const Graph &g,const vector<vertex> & sub) {
+std::pair<vertex, gint> utils::max_residual_degree_vertex(const Graph &g,const vector<vertex> & sub) {
     gint max_degree = 0;
     gint max_degree_vertex = 0;
     for (vertex v : sub) {
@@ -61,7 +58,7 @@ std::pair<gint, gint> max_degree_vertex(const Graph &g) {
     return std::make_pair(max_degree_vertex, max_degree);
 }
 
-gint max_degree_vertices(const Graph &g, std::vector<vertex> &vertices)
+gint utils::max_degree_vertices(const Graph &g, std::vector<vertex> &vertices)
 {
     gint max_degree = 0;
     vertices.clear();
@@ -83,7 +80,7 @@ gint max_degree_vertices(const Graph &g, std::vector<vertex> &vertices)
 
 
 // Returns true if the vertices of the graph are a clique.
-bool is_clique(const Graph &graph, const std::vector<vertex> &vertices) {
+bool utils::is_clique(const Graph &graph, const std::vector<vertex> &vertices) {
     for (gint i1 = 0 ;  i1 < vertices.size()-1; i1++) {
         vertex v1 = vertices[i1];
         for (gint i2 = i1+1 ;  i2 < vertices.size(); i2++) {
@@ -96,7 +93,7 @@ bool is_clique(const Graph &graph, const std::vector<vertex> &vertices) {
 }
 
 // Returns true if the vertices of the graph are a stable set.
-bool is_stable_set(const Graph &graph, const std::vector<vertex> &vertices) {
+bool utils::is_stable_set(const Graph &graph, const std::vector<vertex> &vertices) {
     for (gint v1 : vertices) {
         for (gint v2 : vertices) {
             if (v1 != v2 && graph.is_edge(v1, v2)) {
@@ -110,7 +107,7 @@ bool is_stable_set(const Graph &graph, const std::vector<vertex> &vertices) {
 
 
 
-void breadth_first_search(const Graph &graph, const vertex start,  vector<vertex> & vertices_visited) {
+void utils::breadth_first_search(const Graph &graph, const vertex start,  vector<vertex> & vertices_visited) {
 
     vertices_visited.clear();
     vertices_visited.reserve(graph.nb_vertices()) ;
@@ -137,7 +134,7 @@ void breadth_first_search(const Graph &graph, const vertex start,  vector<vertex
 
 
 
-void connected_components(const Graph &graph,  vector<vector<vertex>> & sol) {
+void utils::connected_components(const Graph &graph,  vector<vector<vertex>> & sol) {
     sol.clear();
     vector<bool> visited(graph.nb_vertices(),false);
     vector<vertex> vector_visited ;
@@ -181,7 +178,7 @@ void breadth_first_search(const Graph &graph, const vertex start, const vector<b
 
 
 
-void connected_components(const Graph &graph,  const vector<vertex> & subset_vertices,  vector<vector<vertex>> & sol) {
+void utils::connected_components(const Graph &graph,  const vector<vertex> & subset_vertices,  vector<vector<vertex>> & sol) {
     sol.clear();
     vector<bool> visited(graph.nb_vertices(),false);
     vector<vertex> vector_visited ;
@@ -201,3 +198,15 @@ void connected_components(const Graph &graph,  const vector<vertex> & subset_ver
 //    return sol;
 }
 
+
+void utils::insert_vertex(vector<vertex> & sub, vertex vertex) {
+    auto iter = sub.begin();
+    while (iter != sub.end() && *iter < vertex) iter++;
+    if (*iter == vertex) return;
+    sub.insert(iter, vertex);
+}
+void utils::remove_vertex(vector<vertex> & sub, vertex vertex) {
+    auto iter = sub.begin();
+    while (iter != sub.end() && *iter < vertex) iter++;
+    if (*iter == vertex) sub.erase(iter);
+}

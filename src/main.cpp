@@ -36,15 +36,15 @@ int main(int argc , char* argv [])
 
     // Returns the density of the graph.
     cout<<"Nombre de sommets du graphe : " << g.nb_vertices()<<endl;
-    cout<<"Nombre d arretes du graphe : " << nb_edges(g)<<endl;
-    cout<<"Densite du graphe : " << density(g)<<endl;
-    cout<<"Degre max du graphe : " << max_degree(g)<<endl;
+    cout<<"Nombre d arretes du graphe : " << utils::nb_edges(g)<<endl;
+    cout<<"Densite du graphe : " << utils::density(g)<<endl;
+    cout<<"Degre max du graphe : " << utils::max_degree(g)<<endl;
     cout<<"Parcours BFS du graphe partant de 0 : ";
     vector<vertex>  vertices_visit;
-    breadth_first_search(g,0,vertices_visit);
+    utils::breadth_first_search(g,0,vertices_visit);
     print_vector(vertices_visit);
     vector<vector<vertex>> comp;
-    connected_components(g,   comp);
+    utils::connected_components(g,   comp);
     for (auto a : comp) {
         cout<<"Composante connexe : ";
         print_vector(a);
@@ -52,7 +52,7 @@ int main(int argc , char* argv [])
     }
     vector<vertex>  subset_vertices{0,1,2,55};
     print_vector(subset_vertices);
-    connected_components(g, subset_vertices,  comp);
+    utils::connected_components(g, subset_vertices,  comp);
     for (auto a : comp) {
         cout<<"Composante connexe : ";
         print_vector(a);

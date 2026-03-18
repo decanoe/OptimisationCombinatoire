@@ -2,7 +2,7 @@
 
 #include "graphs/graph.hpp"
 
-
+namespace utils {
 
 // Returns the number of vertices in the graph.
 gint nb_edges(const Graph &g);
@@ -50,3 +50,9 @@ void connected_components(const Graph &graph,const vector<vertex> & sub, vector<
 // Returns true if the graph is connected (i.e., there is a path between any pair
 // of vertices).
 bool is_connected(const Graph &g);
+
+// insert the vertex in the sorted vertex list sub
+void insert_vertex(vector<vertex> & sub, vertex vertex);
+// removes the vertex from the sorted vertex list sub
+void remove_vertex(vector<vertex> & sub, vertex vertex);
+}
