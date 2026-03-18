@@ -1,5 +1,5 @@
 #include "n1.hpp"
-#include <iostream>
+#include "../utils.hpp"
 
 using namespace neighborhood;
 using namespace criteria;
@@ -31,9 +31,6 @@ bool N1::step(const Graph &g, vector<vertex> & sub, Criteria* criteria) const {
     }
 
     if (to_add == -1) return false; // local maxima reached
-
-    iter = sub.begin();
-    while (iter != sub.end() && *iter < to_add) iter++;
-    sub.insert(iter, to_add);
+    utils::insert_vertex(sub, to_add);
     return true; // HC can continue
 }

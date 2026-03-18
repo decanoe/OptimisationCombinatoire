@@ -202,11 +202,11 @@ void utils::connected_components(const Graph &graph,  const vector<vertex> & sub
 void utils::insert_vertex(vector<vertex> & sub, vertex vertex) {
     auto iter = sub.begin();
     while (iter != sub.end() && *iter < vertex) iter++;
-    if (*iter == vertex) return;
+    if (iter != sub.end() && *iter == vertex) return;
     sub.insert(iter, vertex);
 }
 void utils::remove_vertex(vector<vertex> & sub, vertex vertex) {
     auto iter = sub.begin();
     while (iter != sub.end() && *iter < vertex) iter++;
-    if (*iter == vertex) sub.erase(iter);
+    if (iter != sub.end() && *iter == vertex) sub.erase(iter);
 }
