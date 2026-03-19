@@ -55,4 +55,7 @@ bool is_connected(const Graph &g);
 void insert_vertex(vector<vertex> & sub, vertex vertex);
 // removes the vertex from the sorted vertex list sub
 void remove_vertex(vector<vertex> & sub, vertex vertex);
+
+vector<vertex> dichotomy(vector<vector<vertex>> & sol, vertex vertex);
+
 }

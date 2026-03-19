@@ -226,3 +226,23 @@ void utils::remove_vertex(vector<vertex> & sub, vertex vertex) {
     while (iter != sub.end() && *iter < vertex) iter++;
     if (iter != sub.end() && *iter == vertex) sub.erase(iter);
 }
+
+vector<vertex> utils::dichotomy(vector<vector<vertex>> & sol, vertex v){
+    for (vector<vertex> vec : sol){
+        int max = vec.size();
+        int min = 0;
+        while(min < max){
+            if(vec[(max - min) / 2] == v){
+                return vec;
+            }
+            else if(vec[(max - min) / 2] > v){
+                max = (max - min) / 2;
+            }else{
+                min = (max - min) / 2 + 1;
+            }
+        }
+        if(vec[(max - min) / 2] == v){
+            return vec;
+        }
+    }
+}
