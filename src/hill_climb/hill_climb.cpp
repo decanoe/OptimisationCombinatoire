@@ -6,7 +6,6 @@ void hill_climb(const Graph& g, neighborhood::Neighborhood* neighborhood, criter
 
     std::vector<vertex> to_add = std::vector<vertex>(), to_remove = std::vector<vertex>();
     while (neighborhood->get_step(g, sub, candidates, criteria, to_add, to_remove)) {
-        neighborhood->update_candidates(g, sub, candidates, to_add, to_remove);
-        neighborhood->apply_step(g, sub, to_add, to_remove);
+        neighborhood->update_sub_and_candidates(g, sub, candidates, to_add, to_remove);
     }
 }

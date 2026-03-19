@@ -65,5 +65,7 @@ int main(int argc , char* argv [])
     cout<<"clique maximale : ";
     print_vector(sub);
 
+    cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
+
     return 0;
 }
