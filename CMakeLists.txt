@@ -14,6 +14,7 @@ add_executable(OptCombi
     src/graphs/weightedgraphDefs.cpp
 
     src/criteria/degree.cpp
+    src/criteria/connexeGraphSize.cpp
 
     src/neighborhood/neighborhood.cpp
     src/neighborhood/n1.cpp

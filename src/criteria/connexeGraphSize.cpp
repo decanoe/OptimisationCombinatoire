@@ -1,5 +1,6 @@
 #include "connexeGraphSize.hpp"
-#include "utils.hpp"
+#include "../utils.hpp"
+#include <iostream>
 
 using namespace criteria;
 
@@ -12,6 +13,10 @@ double ConnexeGraphSize::evaluate(const Graph& g, const vector<vertex>& sub, con
         subBool[n] = false;
     }
 
+    for (vertex n : sub){
+        subBool[n] = false;
+    }
+
     vector<vector<vertex>> sol;
 
     utils::connected_components(g,subBool,sol);
@@ -19,6 +24,5 @@ double ConnexeGraphSize::evaluate(const Graph& g, const vector<vertex>& sub, con
     for(vertex n : add){
         score += utils::dichotomy(sol, n).size();
     }
-
     return score;
 }

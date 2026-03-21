@@ -1,6 +1,7 @@
 #include "utils.hpp"
 
 #include <queue>
+#include <algorithm>
 
 
 // Returns the number of vertices in the graph.
@@ -229,20 +230,22 @@ void utils::remove_vertex(vector<vertex> & sub, vertex vertex) {
 
 vector<vertex> utils::dichotomy(vector<vector<vertex>> & sol, vertex v){
     for (vector<vertex> vec : sol){
-        int max = vec.size();
+        sort(vec.begin(), vec.end());
+        int max = vec.size()-1;
         int min = 0;
         while(min < max){
-            if(vec[(max - min) / 2] == v){
+            if(vec[(min + max) / 2] == v){
                 return vec;
             }
-            else if(vec[(max - min) / 2] > v){
-                max = (max - min) / 2;
+            else if(vec[(min + max) / 2] > v){
+                max = (min + max) / 2 - 1;
             }else{
-                min = (max - min) / 2 + 1;
+                min = (min + max) / 2 + 1;
             }
         }
-        if(vec[(max - min) / 2] == v){
+        if(vec[(min + max) / 2] == v){
             return vec;
         }
     }
+    return vector<vertex>();
 }

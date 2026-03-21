@@ -1,3 +1,3 @@
 #pragma once
 #include <string>
-std::string path_instance = "/home/todo/InstancesClique";
+std::string path_instance = "../instances/brock";

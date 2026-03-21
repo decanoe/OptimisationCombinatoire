@@ -7,6 +7,7 @@
 
 #include "hill_climb/hill_climb.hpp"
 #include "criteria/degree.hpp"
+#include "criteria/connexeGraphSize.hpp"
 #include "neighborhood/n1.hpp"
 
 void print_vector(vector<vertex> vec){
@@ -19,19 +20,19 @@ void print_vector(vector<vertex> vec){
 int main(int argc , char* argv [])
 {
     //string s("myciel");
-    string s("C125.9.clq"); // nom de l'instance
+    string s("brock200_2.clq"); // nom de l'instance
 
     if (argc>=2) {
         s = argv[1];
         //s="../instances/"+s;
     }
     //GraphAdjMatrix g(s);
-    //GraphHeavy g(s);
+    GraphHeavy g(s);
     //GraphAdjVectorSorted g(s);
     //GraphAdjVector g(s);
     //GraphAdjVector g(100,0.8,2);
     //GraphAdjMatrix g(100,0.8,2);
-    GraphHeavy g(100,0.8,2);
+    //GraphHeavy g(100,0.8,2);
 
 
     // Returns the density of the graph.
@@ -61,7 +62,7 @@ int main(int argc , char* argv [])
 
 
     vector<vertex> sub = vector<vertex>();
-    hill_climb(g, new neighborhood::N1(), new criteria::Degree(), sub);
+    hill_climb(g, new neighborhood::N1(), new criteria::ConnexeGraphSize(), sub);
     cout<<"clique maximale : ";
     print_vector(sub);
 
