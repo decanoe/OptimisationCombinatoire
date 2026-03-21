@@ -18,6 +18,7 @@ add_executable(OptCombi
 
     src/neighborhood/neighborhood.cpp
     src/neighborhood/n1.cpp
+    src/neighborhood/n2.cpp
 
     src/hill_climb/hill_climb.cpp
 )

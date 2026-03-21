@@ -9,6 +9,7 @@
 #include "criteria/degree.hpp"
 #include "criteria/connexeGraphSize.hpp"
 #include "neighborhood/n1.hpp"
+#include "neighborhood/n2.hpp"
 
 void print_vector(vector<vertex> vec){
     for (auto v : vec) {
@@ -20,7 +21,7 @@ void print_vector(vector<vertex> vec){
 int main(int argc , char* argv [])
 {
     //string s("myciel");
-    string s("brock200_2.clq"); // nom de l'instance
+    string s("brock200_1.clq"); // nom de l'instance
 
     if (argc>=2) {
         s = argv[1];
@@ -62,7 +63,7 @@ int main(int argc , char* argv [])
 
 
     vector<vertex> sub = vector<vertex>();
-    hill_climb(g, new neighborhood::N1(), new criteria::ConnexeGraphSize(), sub);
+    hill_climb(g, new neighborhood::N2(), new criteria::Degree(), sub);
     cout<<"clique maximale : ";
     print_vector(sub);
 
