@@ -17,8 +17,6 @@ add_executable(OptCombi
     src/criteria/connexeGraphSize.cpp
 
     src/neighborhood/neighborhood.cpp
-    src/neighborhood/n1.cpp
-    src/neighborhood/n2.cpp
     src/neighborhood/nn.cpp
 
     src/hill_climb/hill_climb.cpp
