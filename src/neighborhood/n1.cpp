@@ -6,7 +6,7 @@ using namespace criteria;
 
 N1::N1(criteria::Criteria* criteria, std::function<weight(const Graph &, vertex)> weights): Neighborhood(criteria, weights) {}
 
-bool N1::get_step(const Graph &g, const vector<vertex> & sub, vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, const weight& current_score, weight& best_step_score, double& best_step_criteria) const {
+bool N1::get_step(const Graph &g, const vector<vertex> & sub, const vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, const weight& current_score, weight& best_step_score, double& best_step_criteria) const {
     to_add.clear();
     to_remove.clear();
     if (direct_candidates.size() == 0) return false; // local maxima reached

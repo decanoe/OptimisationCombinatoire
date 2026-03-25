@@ -6,7 +6,7 @@ using namespace criteria;
 
 N2::N2(criteria::Criteria* criteria, std::function<weight(const Graph &, vertex)> weights): N1(criteria, weights) {}
 
-bool N2::get_step(const Graph &g, const vector<vertex> & sub, vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, const weight& current_score, weight& best_step_score, double& best_step_criteria) const {
+bool N2::get_step(const Graph &g, const vector<vertex> & sub, const vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, const weight& current_score, weight& best_step_score, double& best_step_criteria) const {
     to_add.clear();
     to_remove.clear();
 

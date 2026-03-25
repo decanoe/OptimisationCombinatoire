@@ -1,6 +1,7 @@
 
 #include "graphs/graphListAdj.hpp"
 #include "graphs/graphAdjMatrix.hpp"
+#include "graphs/weightedgraphDefs.hpp"
 
 #include <iostream>
 #include "utils.hpp"
@@ -10,6 +11,7 @@
 #include "criteria/connexeGraphSize.hpp"
 #include "neighborhood/n1.hpp"
 #include "neighborhood/n2.hpp"
+#include "neighborhood/nn.hpp"
 
 int main(int argc , char* argv [])
 {
@@ -56,11 +58,18 @@ int main(int argc , char* argv [])
 
 
     vector<vertex> sub = vector<vertex>();
-    hill_climb(g, new neighborhood::N2(), new criteria::Degree(), sub);
-    cout<<"clique maximale : ";
-    utils::print_vector(cout, sub) << endl;
 
-    cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
+    for (size_t i = 1; i <= 4; i++)
+    {
+        cout<<"=============== N" << i << " ==================\n";
+
+        neighborhood::Neighborhood* neigh = new neighborhood::NN(i, new criteria::Degree(), &getVertexWeight_1);
+        weight score = hill_climb(g, neigh, sub);
+        cout<<"clique maximale (" << score << ") :";
+        utils::print_vector(cout, sub) << endl;
+
+        cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
+    }
 
     return 0;
 }

@@ -28,7 +28,7 @@ void Neighborhood::update_sub_and_candidates(const Graph& g, vector<vertex>& sub
     }
 }
 
-bool Neighborhood::get_step(const Graph& g, const vector<vertex>& sub, vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, weight& score) const {
+bool Neighborhood::get_step(const Graph& g, const vector<vertex>& sub, const vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, weight& score) const {
     double c = -std::numeric_limits<double>::max();
     weight start_score = score; 
     return this->get_step(g, sub, direct_candidates, to_add, to_remove, start_score, score, c);
