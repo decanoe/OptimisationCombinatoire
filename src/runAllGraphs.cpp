@@ -50,17 +50,17 @@ struct comparator
 };
 
 
-void runGradient(const string& path) {
+void runGradient(const string& save_path, const string& path) {
     string p = path;
     GraphHeavy g(p);
     cout << path << endl;
 
     vector<vertex> sub = vector<vertex>();
-    weight score = gradient(g,getVertexWeight_mod, sub);
+    weight score = gradient(g,getVertexWeight_1, sub);
     cout << score <<endl;
     
     ofstream file;
-    file.open("../run/gradient.txt", ios_base::app | ios_base::out);
+    file.open("../run/" + save_path, ios_base::app | ios_base::out);
     file << path << " ";
     file << score << "\n";
     file.close();
