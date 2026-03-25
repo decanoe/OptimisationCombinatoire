@@ -21,5 +21,7 @@ add_executable(OptCombi
     src/neighborhood/n2.cpp
 
     src/hill_climb/hill_climb.cpp
+    
+    src/gradient/gradient.cpp
 )
 target_compile_features(OptCombi PRIVATE cxx_std_17)
