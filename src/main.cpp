@@ -11,13 +11,6 @@
 #include "neighborhood/n1.hpp"
 #include "neighborhood/n2.hpp"
 
-void print_vector(vector<vertex> vec){
-    for (auto v : vec) {
-        cout << " " << v;
-    }
-    cout << endl;
-}
-
 int main(int argc , char* argv [])
 {
     //string s("myciel");
@@ -44,20 +37,20 @@ int main(int argc , char* argv [])
     cout<<"Parcours BFS du graphe partant de 0 : ";
     vector<vertex>  vertices_visit;
     utils::breadth_first_search(g,0,vertices_visit);
-    print_vector(vertices_visit);
+    utils::print_vector(cout, vertices_visit) << endl;
     vector<vector<vertex>> comp;
     utils::connected_components(g,   comp);
     for (auto a : comp) {
         cout<<"Composante connexe : ";
-        print_vector(a);
+        utils::print_vector(cout, a) << endl;
         cout<<endl;
     }
     vector<vertex>  subset_vertices{0,1,2,55};
-    print_vector(subset_vertices);
+    utils::print_vector(cout, subset_vertices) << endl;
     utils::connected_components(g, subset_vertices,  comp);
     for (auto a : comp) {
         cout<<"Composante connexe : ";
-        print_vector(a);
+        utils::print_vector(cout, a) << endl;
         //cout<<endl;
     }
 
@@ -65,7 +58,7 @@ int main(int argc , char* argv [])
     vector<vertex> sub = vector<vertex>();
     hill_climb(g, new neighborhood::N2(), new criteria::Degree(), sub);
     cout<<"clique maximale : ";
-    print_vector(sub);
+    utils::print_vector(cout, sub) << endl;
 
     cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
 

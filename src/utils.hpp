@@ -4,6 +4,9 @@
 
 namespace utils {
 
+// Prints a vector's vertices
+std::ostream& print_vector(std::ostream& c, const vector<vertex>& vec);
+
 // Returns the number of vertices in the graph.
 gint nb_edges(const Graph &g);
 
@@ -57,5 +60,5 @@ void insert_vertex(vector<vertex> & sub, vertex vertex);
 void remove_vertex(vector<vertex> & sub, vertex vertex);
 
 vector<vertex> dichotomy(vector<vector<vertex>> & sol, vertex vertex);
-
+bool contains(const vector<vertex> & sol, vertex vertex);
 }

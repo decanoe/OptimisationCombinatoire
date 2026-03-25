@@ -2,7 +2,16 @@
 
 #include <queue>
 #include <algorithm>
+#include <iostream>
 
+
+// Prints a vector's vertices
+std::ostream& utils::print_vector(std::ostream& c, const vector<vertex>& vec){
+    for (auto v : vec) {
+        c << " " << v;
+    }
+    return c;
+}
 
 // Returns the number of vertices in the graph.
 gint utils::nb_edges(const Graph &g) {
@@ -231,21 +240,24 @@ void utils::remove_vertex(vector<vertex> & sub, vertex vertex) {
 vector<vertex> utils::dichotomy(vector<vector<vertex>> & sol, vertex v){
     for (vector<vertex> vec : sol){
         sort(vec.begin(), vec.end());
-        int max = vec.size()-1;
-        int min = 0;
-        while(min < max){
-            if(vec[(min + max) / 2] == v){
-                return vec;
-            }
-            else if(vec[(min + max) / 2] > v){
-                max = (min + max) / 2 - 1;
-            }else{
-                min = (min + max) / 2 + 1;
-            }
-        }
-        if(vec[(min + max) / 2] == v){
+        if(contains(vec, v)){
             return vec;
         }
     }
     return vector<vertex>();
+}
+bool utils::contains(const vector<vertex> & sol, vertex vertex) {
+    int max = sol.size()-1;
+    int min = 0;
+    while(min < max){
+        if(sol[(min + max) / 2] == vertex){
+            return true;
+        }
+        else if(sol[(min + max) / 2] > vertex){
+            max = (min + max) / 2 - 1;
+        }else{
+            min = (min + max) / 2 + 1;
+        }
+    }
+    return sol[(min + max) / 2] == vertex;
 }
