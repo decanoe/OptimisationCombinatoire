@@ -14,8 +14,17 @@
 
 int main(int argc , char* argv [])
 {
-
-    runAllGraphs();
+    using namespace std::placeholders;
+    
+    for (int i = 1; i <= 4; i++)
+    {
+        neighborhood::Neighborhood* neigh = new neighborhood::NN(1, new criteria::Degree(), &getVertexWeight_1);
+        runAllGraphs([neigh, i](const string& path)
+        {
+            runHC(neigh, "NN" + std::to_string(i) + "_Best.txt", path);
+        }, 10);
+    }
+    
     /*
     //string s("myciel");
     string s("brock200_1.clq"); // nom de l'instance

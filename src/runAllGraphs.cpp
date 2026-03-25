@@ -50,26 +50,44 @@ struct comparator
 };
 
 
-void runAllGraphs(){
+void runGradient(const string& path) {
+    string p = path;
+    GraphHeavy g(p);
+    cout << path << endl;
 
+    vector<vertex> sub = vector<vertex>();
+    weight score = gradient(g,getVertexWeight_mod, sub);
+    cout << score <<endl;
+    
+    ofstream file;
+    file.open("../run/gradient.txt", ios_base::app | ios_base::out);
+    file << path << " ";
+    file << score << "\n";
+    file.close();
+}
+void runHC(neighborhood::Neighborhood* n, const string& save_path, const string& path) {
+    string p = path;
+    GraphHeavy g(p);
+    cout << path << endl;
+
+    vector<vertex> sub = vector<vertex>();
+    weight score = hill_climb(g, n, sub);
+    cout << score <<endl;
+    
+    ofstream file;
+    file.open("../run/" + save_path, ios_base::app | ios_base::out);
+    file << path << " ";
+    file << score << "\n";
+    file.close();
+}
+void runAllGraphs(function<void(const string&)> runner, int nb_graphs){
     vector<Path_Size> pathGraph = vector<Path_Size>();
     getPathGraphs(path_instance, pathGraph);
 
     std::sort(pathGraph.begin(), pathGraph.end(),comparator());
 
     for(Path_Size path : pathGraph){
-        GraphHeavy g(path.path);
-        cout << path.path << endl;
-
-        vector<vertex> sub = vector<vertex>();
-        weight score = gradient(g,getVertexWeight_mod, sub);
-        cout << score <<endl;
-        
-        ofstream file;
-        file.open("../run/gradient.txt", ios_base::app | ios_base::out);
-        file << path.path << " ";
-        file << score << "\n";
-        file.close();
+        if (nb_graphs-- <= 0) return;
+        runner(path.path);
     }
-
 }

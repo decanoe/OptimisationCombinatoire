@@ -12,9 +12,9 @@ weight hill_climb(const Graph& g, neighborhood::Neighborhood* neighborhood, vect
     while (neighborhood->get_step(g, sub, candidates, to_add, to_remove, score)) {
         neighborhood->update_sub_and_candidates(g, sub, candidates, to_add, to_remove);
 
-        std::cout << "iteration " << iter++;
-        utils::print_vector(cout << "\t+(", to_add) << ")";
-        utils::print_vector(cout << "\t-(", to_remove) << ") \t=>" << score << endl;
+        // std::cout << "iteration " << iter++;
+        // utils::print_vector(cout << "\t+(", to_add) << ")";
+        // utils::print_vector(cout << "\t-(", to_remove) << ") \t=>" << score << endl;
     }
     return score;
 }

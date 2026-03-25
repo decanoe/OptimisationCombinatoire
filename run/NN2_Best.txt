@@ -1,0 +1,10 @@
+johnson/johnson8-2-4.clq 4
+MANN_a/MANN_a9.clq 16
+hamming/hamming6-4.clq 4
+hamming/hamming6-2.clq 32
+johnson/johnson8-4-4.clq 14
+johnson/johnson16-2-4.clq 8
+C/C125.9.clq 29
+keller/keller4.clq 8
+c-fat/c-fat200-1.clq 12
+c-fat/c-fat200-2.clq 24
