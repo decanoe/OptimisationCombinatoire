@@ -63,8 +63,10 @@ bool NN::get_step(unsigned int n, const Graph &g, const vector<vertex> & sub, co
             for (vertex v : new_sub) g.intersect_neighbors(new_direct_candidates, v);
             for (vertex v : removed_candidates) utils::remove_vertex(new_direct_candidates, v);
             
-            bool found_better = this->get_step(n-1, g, new_sub, new_direct_candidates, removed_candidates, to_add, to_remove, current_score - removed_weight, best_step_score, best_step_criteria);
-            if (found_better) utils::insert_vertex(to_remove, removed_v);
+            if (this->get_step(n-1, g, new_sub, new_direct_candidates, removed_candidates, to_add, to_remove, current_score - removed_weight, best_step_score, best_step_criteria)) {
+                found_better = true;
+                utils::insert_vertex(to_remove, removed_v);
+            }
 
             removed_candidates.pop_back();
         }
