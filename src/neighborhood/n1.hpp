@@ -5,8 +5,9 @@
 namespace neighborhood {
     class N1 : public Neighborhood
     {
-    private:
+    protected:
+        virtual bool get_step(const Graph& g, const vector<vertex>& sub, vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, const weight& current_score, weight& best_step_score, double& best_step_criteria) const override;
     public:
-        virtual bool get_step(const Graph& g, const vector<vertex>& sub, vector<vertex>& candidates, criteria::Criteria* criteria, vector<vertex>& to_add, vector<vertex>& to_remove) const override;
+        N1(criteria::Criteria* criteria, std::function<weight(const Graph &, vertex)> weights);
     };
 }

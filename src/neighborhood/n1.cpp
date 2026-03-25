@@ -4,52 +4,32 @@
 using namespace neighborhood;
 using namespace criteria;
 
-bool N1::get_step(const Graph &g, const vector<vertex> & sub, vector<vertex>& candidates, Criteria* criteria, vector<vertex>& to_add, vector<vertex>& to_remove) const {
+N1::N1(criteria::Criteria* criteria, std::function<weight(const Graph &, vertex)> weights): Neighborhood(criteria, weights) {}
+
+bool N1::get_step(const Graph &g, const vector<vertex> & sub, vector<vertex>& direct_candidates, vector<vertex>& to_add, vector<vertex>& to_remove, const weight& current_score, weight& best_step_score, double& best_step_criteria) const {
     to_add.clear();
     to_remove.clear();
-    if (candidates.size() == 0) return false; // local maxima reached
+    if (direct_candidates.size() == 0) return false; // local maxima reached
 
     vertex best = -1;
-    double score = 0;
-    for (vertex v : candidates)
+    for (vertex v : direct_candidates)
     {
-        double new_score = criteria->evaluate(g, sub, vector<vertex>(1, v), std::vector<vertex>());
-        if (best == -1 || new_score > score) {
-            score = new_score;
+        weight test_score = current_score + this->weights(g, v);
+        if (test_score < best_step_score) continue;
+        
+        double test_c_score = this->criteria->evaluate(g, sub, {v}, std::vector<vertex>());
+
+        if (test_score > best_step_score || (test_c_score > best_step_criteria)) {
+            best_step_score = test_score;
+            best_step_criteria = test_c_score;
             best = v;
         }
     }
 
-    to_add.push_back(best);
-    return true; // HC can continue
-}
-/*bool N1::step(const Graph &g, vector<vertex> & sub, Criteria* criteria) const {
-    vertex to_add = -1;
-    double score = 0;
-
-    std::vector<vertex>::iterator iter = sub.begin();
-    for (vertex i = 0; i < g.nb_vertices(); i++)
-    {
-        if (iter != sub.end()) { // ignores vertices already presents in sub
-            while (iter != sub.end() && *iter < i) iter++;
-            if (iter != sub.end() && *iter == i) continue;
-        }
-
-        bool can_be_added = true;
-        for (vertex v : sub)
-        {
-            if (!g.is_edge(i, v)) { can_be_added = false; break; }
-        }
-        if (can_be_added) {
-            double new_score = criteria->evaluate(g, sub, vector<vertex>(1, i), std::vector<vertex>());
-            if (to_add == -1 || new_score > score) {
-                score = new_score;
-                to_add = i;
-            }
-        }
+    if (best != -1) {
+        to_add.push_back(best);
+        return true; // HC can continue
     }
 
-    if (to_add == -1) return false; // local maxima reached
-    utils::insert_vertex(sub, to_add);
-    return true; // HC can continue
-}*/
+    return false; // indicated best_step_score was higher than anything found
+}
