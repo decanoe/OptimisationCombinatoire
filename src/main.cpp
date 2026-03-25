@@ -5,16 +5,18 @@
 
 #include <iostream>
 #include "utils.hpp"
+#include "runAllGraphs.hpp"
 
 #include "hill_climb/hill_climb.hpp"
 #include "criteria/degree.hpp"
 #include "criteria/connexeGraphSize.hpp"
-#include "neighborhood/n1.hpp"
-#include "neighborhood/n2.hpp"
 #include "neighborhood/nn.hpp"
 
 int main(int argc , char* argv [])
 {
+
+    runAllGraphs();
+    /*
     //string s("myciel");
     string s("brock200_1.clq"); // nom de l'instance
 
@@ -70,6 +72,7 @@ int main(int argc , char* argv [])
 
         cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
     }
+        */
 
     return 0;
 }

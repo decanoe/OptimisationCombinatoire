@@ -16,13 +16,14 @@ void step_gradient(const Graph& g,std::function<weight(const Graph&,vertex)> wei
     }
 }
 
-void gradient(const Graph& g,std::function<weight(const Graph&,vertex)> weight,vector<vertex>& sub, float alpha, float eps,int iter){
+weight gradient(const Graph& g,std::function<weight(const Graph&,vertex)> fweight,vector<vertex>& sub, float alpha, float eps,int iter){
     vector<float> z = vector<float>(g.nb_vertices(), 0);
     
     for (unsigned int i = 0; i<iter; i++){
-        step_gradient(g,weight,z,alpha,eps);
+        step_gradient(g,fweight,z,alpha,eps);
     }
 
+    weight score = 0;
     auto max = std::max_element(z.begin(),z.end());
     while (*max > 0)
     {
@@ -39,8 +40,10 @@ void gradient(const Graph& g,std::function<weight(const Graph&,vertex)> weight,v
         }
         if(insert){
             utils::insert_vertex(sub,index);
+            score += fweight(g,index);
         }
         max = std::max_element(z.begin(),z.end());
     }
 
+    return score;
 }

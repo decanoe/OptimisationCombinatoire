@@ -1,3 +1,4 @@
 #pragma once
 #include <string>
-std::string path_instance = "../instances/brock";
+
+#define path_instance "../instances"
