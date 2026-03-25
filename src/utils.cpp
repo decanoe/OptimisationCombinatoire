@@ -10,7 +10,19 @@ std::ostream& utils::print_vector(std::ostream& c, const vector<vertex>& vec){
     for (auto v : vec) {
         c << " " << v;
     }
-    return c;
+    return c << " ";
+}
+std::ostream& utils::print_vector(std::ostream& c, const vector<weight>& vec){
+    for (auto v : vec) {
+        c << " " << v;
+    }
+    return c << " ";
+}
+std::ostream& utils::print_vector(std::ostream& c, const vector<double>& vec){
+    for (auto v : vec) {
+        c << " " << v;
+    }
+    return c << " ";
 }
 
 // Returns the number of vertices in the graph.

@@ -6,6 +6,10 @@ namespace utils {
 
 // Prints a vector's vertices
 std::ostream& print_vector(std::ostream& c, const vector<vertex>& vec);
+// Prints a vector's weights
+std::ostream& print_vector(std::ostream& c, const vector<weight>& vec);
+// Prints a vector's doubles
+std::ostream& print_vector(std::ostream& c, const vector<double>& vec);
 
 // Returns the number of vertices in the graph.
 gint nb_edges(const Graph &g);
