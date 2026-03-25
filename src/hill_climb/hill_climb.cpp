@@ -10,10 +10,8 @@ void hill_climb(const Graph& g, neighborhood::Neighborhood* neighborhood, criter
     int iter = 0;
     while (neighborhood->get_step(g, sub, candidates, criteria, to_add, to_remove)) {
         std::cout << "iteration " << iter++;
-        std::cout << "\n\tadd ";
-        utils::print_vector(to_add);
-        std::cout << "\tremove ";
-        utils::print_vector(to_remove);
+        utils::print_vector(cout << "\t+(", to_add) << ")";
+        utils::print_vector(cout << "\t-(", to_remove) << ")" << endl;
 
         neighborhood->update_sub_and_candidates(g, sub, candidates, to_add, to_remove);
     }
