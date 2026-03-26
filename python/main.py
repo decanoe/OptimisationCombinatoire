@@ -39,7 +39,7 @@ def normalize_data(data: dict[str, dict[str, float]]):
             if (graph in results):
                 results[graph] /= max_score
 
-data: dict[str, dict[str, float]] = load_all_data(dir_path + "/../run", weighted=True)
+data: dict[str, dict[str, float]] = load_all_data(dir_path + "/../run", weighted=False)
 normalize_data(data)
 
 def mean_data(data: dict[str, dict[str, float]]) -> dict[str, float]:
@@ -66,9 +66,9 @@ fig.subplots_adjust(left=0.1, right=0.9, bottom=0.3, top=0.99)
 
 plot_data: list[tuple[str, list[float]]] = []
 for algo, results in data.items():
-    if "N4" not in algo:
+    if "Worst" in algo or "First" in algo:
         continue
-    plot_data.append((algo.removesuffix("_Weighted"), [v for v in results.values()]))
+    plot_data.append((algo, [v for v in results.values()]))
 
 plot_data = sorted(plot_data, key=lambda d: d[0])
 
