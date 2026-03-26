@@ -2,7 +2,7 @@
 #include "neighborhood/neighborhood.hpp"
 #include <functional>
 
-void runGradient(const string& save_path, const string& path);
+void runGradient(const string& save_path, std::function<weight (const Graph &, vertex)> fweight, const string& path);
 void runHC(neighborhood::Neighborhood* n, const string& save_path, const string& path);
 
 void runAllGraphs(function<void(const string&)> runner, int nb_graphs);

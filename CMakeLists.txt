@@ -4,7 +4,7 @@ project(OPTIMISATION_COMBINATOIRE LANGUAGES CXX)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 add_executable(OptCombi
-    src/main.cpp
+    src/main_exemple.cpp
     src/utils.cpp
     src/runAllGraphs.cpp
 

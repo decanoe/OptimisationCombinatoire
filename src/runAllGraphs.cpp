@@ -50,13 +50,13 @@ struct comparator
 };
 
 
-void runGradient(const string& save_path, const string& path) {
+void runGradient(const string& save_path, std::function<weight (const Graph &, vertex)> fweight, const string& path) {
     string p = path;
     GraphHeavy g(p);
     cout << path << endl;
 
     vector<vertex> sub = vector<vertex>();
-    weight score = gradient(g,getVertexWeight_1, sub);
+    weight score = gradient(g,fweight, sub);
     cout << score <<endl;
     
     ofstream file;
