@@ -14,74 +14,76 @@
 
 int main(int argc , char* argv [])
 {
-    using namespace std::placeholders;
+    // int nb_graphs = 15;
+    // for (neighborhood::NN::Choice c : {neighborhood::NN::Choice::Best, neighborhood::NN::Choice::First, neighborhood::NN::Choice::Worst})
+    // for (int i = 1; i <= 4; i++)
+    // {
+    //     string choice = "Best";
+    //     if (c == neighborhood::NN::Choice::First) choice = "First";
+    //     if (c == neighborhood::NN::Choice::Worst) choice = "Worst";
+    //     neighborhood::Neighborhood* neigh = new neighborhood::NN(1, c, new criteria::Degree(), &getVertexWeight_mod);
+    //     runAllGraphs([neigh, i, choice](const string& path)
+    //     {
+    //         runHC(neigh, "NN" + std::to_string(i) + "_Degree_" + choice + "_Weighted.txt", path);
+    //     }, nb_graphs);
+
+    //     neigh = new neighborhood::NN(1, c, new criteria::ConnexeGraphSize, &getVertexWeight_mod);
+    //     runAllGraphs([neigh, i, choice](const string& path)
+    //     {
+    //         runHC(neigh, "NN" + std::to_string(i) + "_ConnexeGraphSize_" + choice + "_Weighted.txt", path);
+    //     }, nb_graphs);
+    // }
     
-    for (int i = 1; i <= 4; i++)
-    {
-        neighborhood::Neighborhood* neigh = new neighborhood::NN(1, new criteria::Degree(), &getVertexWeight_1);
-        runAllGraphs([neigh, i](const string& path)
-        {
-            runHC(neigh, "NN" + std::to_string(i) + "_Best.txt", path);
-        }, 10);
-    }
-    
-    /*
-    //string s("myciel");
-    string s("brock200_1.clq"); // nom de l'instance
+    // //string s("myciel");
+    // string s("brock200_1.clq"); // nom de l'instance
 
-    if (argc>=2) {
-        s = argv[1];
-        //s="../instances/"+s;
-    }
-    //GraphAdjMatrix g(s);
-    GraphHeavy g(s);
-    //GraphAdjVectorSorted g(s);
-    //GraphAdjVector g(s);
-    //GraphAdjVector g(100,0.8,2);
-    //GraphAdjMatrix g(100,0.8,2);
-    //GraphHeavy g(100,0.8,2);
+    // if (argc>=2) {
+    //     s = argv[1];
+    //     //s="../instances/"+s;
+    // }
+    // //GraphAdjMatrix g(s);
+    // GraphHeavy g(s);
+    // //GraphAdjVectorSorted g(s);
+    // //GraphAdjVector g(s);
+    // //GraphAdjVector g(100,0.8,2);
+    // //GraphAdjMatrix g(100,0.8,2);
+    // //GraphHeavy g(100,0.8,2);
 
 
-    // Returns the density of the graph.
-    cout<<"Nombre de sommets du graphe : " << g.nb_vertices()<<endl;
-    cout<<"Nombre d arretes du graphe : " << utils::nb_edges(g)<<endl;
-    cout<<"Densite du graphe : " << utils::density(g)<<endl;
-    cout<<"Degre max du graphe : " << utils::max_degree(g)<<endl;
-    cout<<"Parcours BFS du graphe partant de 0 : ";
-    vector<vertex>  vertices_visit;
-    utils::breadth_first_search(g,0,vertices_visit);
-    utils::print_vector(cout, vertices_visit) << endl;
-    vector<vector<vertex>> comp;
-    utils::connected_components(g,   comp);
-    for (auto a : comp) {
-        cout<<"Composante connexe : ";
-        utils::print_vector(cout, a) << endl;
-        cout<<endl;
-    }
-    vector<vertex>  subset_vertices{0,1,2,55};
-    utils::print_vector(cout, subset_vertices) << endl;
-    utils::connected_components(g, subset_vertices,  comp);
-    for (auto a : comp) {
-        cout<<"Composante connexe : ";
-        utils::print_vector(cout, a) << endl;
-        //cout<<endl;
-    }
+    // // Returns the density of the graph.
+    // cout<<"Nombre de sommets du graphe : " << g.nb_vertices()<<endl;
+    // cout<<"Nombre d arretes du graphe : " << utils::nb_edges(g)<<endl;
+    // cout<<"Densite du graphe : " << utils::density(g)<<endl;
+    // cout<<"Degre max du graphe : " << utils::max_degree(g)<<endl;
+    // cout<<"Parcours BFS du graphe partant de 0 : ";
+    // vector<vertex>  vertices_visit;
+    // utils::breadth_first_search(g,0,vertices_visit);
+    // utils::print_vector(cout, vertices_visit) << endl;
+    // vector<vector<vertex>> comp;
+    // utils::connected_components(g,   comp);
+    // for (auto a : comp) {
+    //     cout<<"Composante connexe : ";
+    //     utils::print_vector(cout, a) << endl;
+    //     cout<<endl;
+    // }
+    // vector<vertex>  subset_vertices{0,1,2,55};
+    // utils::print_vector(cout, subset_vertices) << endl;
+    // utils::connected_components(g, subset_vertices,  comp);
+    // for (auto a : comp) {
+    //     cout<<"Composante connexe : ";
+    //     utils::print_vector(cout, a) << endl;
+    //     //cout<<endl;
+    // }
 
 
-    vector<vertex> sub = vector<vertex>();
+    // vector<vertex> sub = vector<vertex>();
 
-    for (size_t i = 1; i <= 4; i++)
-    {
-        cout<<"=============== N" << i << " ==================\n";
+    // neighborhood::Neighborhood* neigh = new neighborhood::NN(4, neighborhood::NN::Choice::Worst, new criteria::Degree(), &getVertexWeight_1);
+    // weight score = hill_climb(g, neigh, sub);
+    // cout<<"clique maximale (" << score << ") :";
+    // utils::print_vector(cout, sub) << endl;
 
-        neighborhood::Neighborhood* neigh = new neighborhood::NN(i, new criteria::Degree(), &getVertexWeight_1);
-        weight score = hill_climb(g, neigh, sub);
-        cout<<"clique maximale (" << score << ") :";
-        utils::print_vector(cout, sub) << endl;
+    // cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
 
-        cout << "validation : " << (utils::is_clique(g, sub) ? "OK" : "Problème !") << "\n";
-    }
-        */
-
-    return 0;
+    // return 0;
 }
