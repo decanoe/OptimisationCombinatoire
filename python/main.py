@@ -10,22 +10,22 @@ if __name__ != "__main__":
     exit()
 
 # ===============================================================================================
-def load_file_data(filename: str) -> dict[str, float]:
+def load_file_data(filename: str, nb_lines: int = 25) -> dict[str, float]:
     result = {}
     with open(filename) as file:
-        for line in [line.rstrip() for line in file]:
+        for line in [line.rstrip() for line in file][:nb_lines]:
             graph: str = line.split(" ")[0]
             graph = graph.split("/")[-1]
             score: float = float(line.split(" ")[1])
             result[graph] = score
     return result
-def load_all_data(directory: str, weighted: bool) -> dict[str, dict[str, float]]:
+def load_all_data(directory: str, weighted: bool, nb_lines: int = 25) -> dict[str, dict[str, float]]:
     result: dict[str, dict[str, float]] = {}
     for file in os.listdir(os.fsencode(directory)):
         filename: str = os.fsdecode(file)
         if filename.endswith(".txt"):
             if filename.endswith("Weighted.txt") == weighted:
-                result[filename.removesuffix(".txt")] = load_file_data(directory + "/" + filename)
+                result[filename.removesuffix(".txt").removesuffix("_Weighted")] = load_file_data(directory + "/" + filename, nb_lines)
     return result
 
 def normalize_data(data: dict[str, dict[str, float]]):
@@ -37,9 +37,9 @@ def normalize_data(data: dict[str, dict[str, float]]):
     for _, results in data.items():
         for graph, max_score in max_scores.items():
             if (graph in results):
-                results[graph] /= max_score
+                results[graph] /= float(max_score)
 
-data: dict[str, dict[str, float]] = load_all_data(dir_path + "/../run", weighted=False)
+data: dict[str, dict[str, float]] = load_all_data(dir_path + "/../run", weighted=True, nb_lines = 25)
 normalize_data(data)
 
 def mean_data(data: dict[str, dict[str, float]]) -> dict[str, float]:
@@ -66,11 +66,12 @@ fig.subplots_adjust(left=0.1, right=0.9, bottom=0.3, top=0.99)
 
 plot_data: list[tuple[str, list[float]]] = []
 for algo, results in data.items():
-    if "Worst" in algo or "First" in algo:
+    if "Worst" in algo or "First" in algo or "Connexe" in algo:
         continue
     plot_data.append((algo, [v for v in results.values()]))
 
 plot_data = sorted(plot_data, key=lambda d: d[0])
+print(plot_data)
 
 ax.boxplot([d[1] for d in plot_data], tick_labels=[d[0] for d in plot_data])
 ax.tick_params(axis='x', labelrotation=90)

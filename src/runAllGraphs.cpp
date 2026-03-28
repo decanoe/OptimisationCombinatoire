@@ -1,19 +1,18 @@
 #include "runAllGraphs.hpp"
-#include "graphs/graphListAdj.hpp"
-#include "graphs/weightedgraphDefs.hpp"
 
 #include <iostream>
 #include <dirent.h>
-#include "utils.hpp"
-#include "path.hpp"
 #include <algorithm>
 #include <fstream>
 #include <iostream>
 
+#include "utils.hpp"
+#include "path.hpp"
+#include "graphs/graphListAdj.hpp"
+#include "graphs/weightedgraphDefs.hpp"
+
 #include "hill_climb/hill_climb.hpp"
 #include "gradient/gradient.hpp"
-#include "criteria/degree.hpp"
-#include "criteria/connexeGraphSize.hpp"
 
 struct Path_Size {
     string path;
@@ -49,14 +48,13 @@ struct comparator
     }
 };
 
-
 void runGradient(const string& save_path, std::function<weight (const Graph &, vertex)> fweight, const string& path) {
     string p = path;
     GraphHeavy g(p);
     cout << path << endl;
 
     vector<vertex> sub = vector<vertex>();
-    weight score = gradient(g,fweight, sub);
+    weight score = gradient(g,fweight, sub, 0.01, 0.01, 2000);
     cout << score <<endl;
     
     ofstream file;

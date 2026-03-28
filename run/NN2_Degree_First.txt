@@ -23,8 +23,3 @@ gen/gen200_p0.9_44.clq 30
 gen/gen200_p0.9_55.clq 30
 san/san200_0.9_3.clq 21
 hamming/hamming8-4.clq 16
-C/C250.9.clq 30
-hamming/hamming8-2.clq 128
-san/san400_0.5_1.clq 7
-san/sanr400_0.5.clq 8
-MANN_a/MANN_a27.clq 27
