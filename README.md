@@ -10,5 +10,6 @@ Pour recréer les résultats, un code main_exemple.cpp est fourni. Il suffit d'e
 - cmake ..
 - make
 - ./OptCombi
+
 depuis la racine du projet pour le compiler et l’exécuter.
 Ce fichier main_exemple.cpp donne un bon exemple de la façon de lancer chaque algorithme implémenté.
